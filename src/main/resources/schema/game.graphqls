@@ -1,0 +1,5 @@
+type Game {
+    id: String!
+    name: String!
+    bggLink: String
+}

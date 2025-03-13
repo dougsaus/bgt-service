@@ -1,8 +1,10 @@
 plugins {
 	id 'java'
+	id "io.freefair.lombok" version "8.10.2"
 	id 'org.springframework.boot' version '3.4.3'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'com.netflix.dgs.codegen' version '7.0.3'
+	id 'org.liquibase.gradle' version '2.2.0'
 }
 
 group = 'com.saus'
@@ -29,14 +31,22 @@ ext {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.liquibase:liquibase-core'
+
+	runtimeOnly 'org.postgresql:postgresql'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 	testImplementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter-test'
 	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'org.testcontainers:postgresql'
+
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
@@ -47,11 +57,20 @@ dependencyManagement {
 }
 
 generateJava {
-	schemaPaths = ["${projectDir}/src/main/resources/graphql-client"]
-	packageName = 'com.saus.bgt_service.codegen'
+	schemaPaths = ["${projectDir}/src/main/resources/schema"]
+	packageName = 'com.saus.bgt.generated'
 	generateClient = true
+}
+
+compileJava {
+	doFirst {
+		generateJava
+	}
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
 }
