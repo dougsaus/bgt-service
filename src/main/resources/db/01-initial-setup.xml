@@ -11,7 +11,7 @@
             <column name="name" type="VARCHAR(256)">
                 <constraints nullable="false"/>
             </column>
-            <column name="bggLink" type="VARCHAR" defaultValue="">
+            <column name="bgg_link" type="VARCHAR" defaultValue="">
                 <constraints nullable="false"/>
             </column>
 

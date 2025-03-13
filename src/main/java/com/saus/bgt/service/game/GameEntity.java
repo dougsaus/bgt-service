@@ -1,0 +1,33 @@
+package com.saus.bgt.service.game;
+
+import com.saus.bgt.generated.types.Game;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.UUID;
+
+@Slf4j
+@Entity(name = "games")
+@Data
+@Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
+public class GameEntity {
+    @Id
+    private UUID id;
+    private String name;
+    private String bggLink;
+
+    public Game toGame() {
+        return Game.newBuilder()
+                .id(this.id.toString())
+                .name(this.name)
+                .bggLink(this.bggLink)
+                .build();
+    }
+}
