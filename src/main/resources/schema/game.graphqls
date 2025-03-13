@@ -3,3 +3,8 @@ type Game {
     name: String!
     bggLink: String
 }
+
+input GameInput {
+    name: String!
+    bggLink: String = ""
+}

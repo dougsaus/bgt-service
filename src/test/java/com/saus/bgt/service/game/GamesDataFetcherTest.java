@@ -17,6 +17,8 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
@@ -39,6 +41,9 @@ class GamesDataFetcherTest extends NameGeneratingTest {
 
     @Autowired
     DgsQueryExecutor dgsQueryExecutor;
+
+    @Autowired
+    GameRepository gameRepository;
 
     @Test
     void given_empty_database__when_query_for_all_games__then_return_empty_list_of_games() {
@@ -85,5 +90,34 @@ class GamesDataFetcherTest extends NameGeneratingTest {
         assertThat(game.getId()).isEqualTo("a9c4955e-bf92-418f-b2bf-0421683f4002");
         assertThat(game.getName()).isEqualTo("Game2");
         assertThat(game.getBggLink()).isEqualTo("");
+    }
+
+    @Test
+    @Sql(scripts = "/scenarios/default/clear-db.sql", executionPhase = BEFORE_TEST_METHOD)
+    @Sql(scripts = "/scenarios/default/clear-db.sql", executionPhase = AFTER_TEST_METHOD)
+    void given_new_game_input__when_create_game__then_persist_and_return_game() {
+
+        @Language("GraphQL") String query = """
+                mutation {
+                    createGame(input: {name: "New Game" bggLink: "New Link"}) {
+                        id
+                        name
+                        bggLink
+                    }
+                }
+                """;
+
+        Game game = dgsQueryExecutor.executeAndExtractJsonPathAsObject(query, "data.createGame", new TypeRef<>() {
+        });
+
+        assertThat(game.getId()).isNotNull();
+        assertThat(game.getName()).isEqualTo("New Game");
+        assertThat(game.getBggLink()).isEqualTo("New Link");
+
+        Optional<GameEntity> byId = gameRepository.findById(UUID.fromString(game.getId()));
+        assertThat(byId.isPresent()).isTrue();
+        GameEntity gameEntity = byId.get();
+        assertThat(gameEntity.getName()).isEqualTo("New Game");
+        assertThat(gameEntity.getBggLink()).isEqualTo("New Link");
     }
 }

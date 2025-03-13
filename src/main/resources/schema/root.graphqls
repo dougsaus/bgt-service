@@ -1,3 +1,7 @@
 type Query {
-    games(name: String): [Game]
+    games: [Game!]!
+}
+
+type Mutation {
+    createGame(input: GameInput!): Game!
 }
