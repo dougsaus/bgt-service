@@ -1,9 +1,6 @@
 package com.saus.bgt.service.game;
 
-import com.netflix.graphql.dgs.DgsComponent;
-import com.netflix.graphql.dgs.DgsMutation;
-import com.netflix.graphql.dgs.DgsQuery;
-import com.netflix.graphql.dgs.InputArgument;
+import com.netflix.graphql.dgs.*;
 import com.saus.bgt.generated.types.Game;
 import com.saus.bgt.generated.types.GameInput;
 import com.saus.bgt.service.util.CsvReader;

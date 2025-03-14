@@ -1,0 +1,160 @@
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item type="boardgame" id="1">
+        <thumbnail>https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__thumb/img/o18rjEemoWaVru9Y2TyPwuIaRfE=/fit-in/200x150/filters:strip_icc()/pic3490053.jpg</thumbnail>
+        <image>https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__original/img/FpyxH41Y6_ROoePAilPNEhXnzO8=/0x0/filters:format(jpeg)/pic3490053.jpg</image>
+        <name type="primary" sortindex="1" value="Brass: Birmingham"/>
+        <name type="alternate" sortindex="1" value="Brass. Бирмингем"/>
+        <name type="alternate" sortindex="1" value="Brass. Бірмінгем"/>
+        <name type="alternate" sortindex="1" value="ブラス：バーミンガム"/>
+        <name type="alternate" sortindex="1" value="工业革命：伯明翰(Chinese edition) (2018)"/>
+        <name type="alternate" sortindex="1" value="工業革命：伯明翰"/>
+        <name type="alternate" sortindex="1" value="브라스: 버밍엄"/>
+        <description>Description 1</description>
+        <yearpublished value="2018"/>
+        <minplayers value="2"/>
+        <maxplayers value="4"/>
+        <poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="1225">
+            <results numplayers="1">
+                <result value="Best" numvotes="0"/>
+                <result value="Recommended" numvotes="61"/>
+                <result value="Not Recommended" numvotes="660"/>
+            </results>
+            <results numplayers="2">
+                <result value="Best" numvotes="122"/>
+                <result value="Recommended" numvotes="776"/>
+                <result value="Not Recommended" numvotes="156"/>
+            </results>
+            <results numplayers="3">
+                <result value="Best" numvotes="656"/>
+                <result value="Recommended" numvotes="397"/>
+                <result value="Not Recommended" numvotes="17"/>
+            </results>
+            <results numplayers="4">
+                <result value="Best" numvotes="657"/>
+                <result value="Recommended" numvotes="336"/>
+                <result value="Not Recommended" numvotes="45"/>
+            </results>
+            <results numplayers="4+">
+                <result value="Best" numvotes="1"/>
+                <result value="Recommended" numvotes="6"/>
+                <result value="Not Recommended" numvotes="548"/>
+            </results>
+        </poll>
+        <poll-summary name="suggested_numplayers" title="User Suggested Number of Players">
+            <result name="bestwith" value="Best with 3–4 players"/>
+            <result name="recommmendedwith" value="Recommended with 2–4 players"/>
+        </poll-summary>
+        <playingtime value="120"/>
+        <minplaytime value="60"/>
+        <maxplaytime value="120"/>
+        <minage value="14"/>
+        <poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="180">
+            <results>
+                <result value="2" numvotes="1"/>
+                <result value="3" numvotes="0"/>
+                <result value="4" numvotes="0"/>
+                <result value="5" numvotes="0"/>
+                <result value="6" numvotes="0"/>
+                <result value="8" numvotes="6"/>
+                <result value="10" numvotes="13"/>
+                <result value="12" numvotes="39"/>
+                <result value="14" numvotes="92"/>
+                <result value="16" numvotes="27"/>
+                <result value="18" numvotes="2"/>
+                <result value="21 and up" numvotes="0"/>
+            </results>
+        </poll>
+        <poll name="language_dependence" title="Language Dependence" totalvotes="54">
+            <results>
+                <result level="36" value="No necessary in-game text" numvotes="52"/>
+                <result level="37" value="Some necessary text - easily memorized or small crib sheet" numvotes="2"/>
+                <result level="38" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="0"/>
+                <result level="39" value="Extensive use of text - massive conversion needed to be playable" numvotes="0"/>
+                <result level="40" value="Unplayable in another language" numvotes="0"/>
+            </results>
+        </poll>
+        <link type="boardgamecategory" id="2726" value="Age of Reason"/>
+        <link type="boardgamecategory" id="1021" value="Economic"/>
+        <link type="boardgamecategory" id="1088" value="Industry / Manufacturing"/>
+        <link type="boardgamecategory" id="2710" value="Post-Napoleonic"/>
+        <link type="boardgamecategory" id="1034" value="Trains"/>
+        <link type="boardgamecategory" id="1011" value="Transportation"/>
+        <link type="boardgamemechanic" id="2040" value="Hand Management"/>
+        <link type="boardgamemechanic" id="2902" value="Income"/>
+        <link type="boardgamemechanic" id="2904" value="Loans"/>
+        <link type="boardgamemechanic" id="2900" value="Market"/>
+        <link type="boardgamemechanic" id="2081" value="Network and Route Building"/>
+        <link type="boardgamemechanic" id="3100" value="Tags"/>
+        <link type="boardgamemechanic" id="2849" value="Tech Trees / Tech Tracks"/>
+        <link type="boardgamemechanic" id="2826" value="Turn Order: Stat-Based"/>
+        <link type="boardgamemechanic" id="2897" value="Variable Set-up"/>
+        <link type="boardgamefamily" id="17519" value="Cities: Birmingham (England)"/>
+        <link type="boardgamefamily" id="81601" value="Components: Map (Regional scale)"/>
+        <link type="boardgamefamily" id="65191" value="Components: Multi-Use Cards"/>
+        <link type="boardgamefamily" id="14759" value="Country: England"/>
+        <link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter"/>
+        <link type="boardgamefamily" id="22135" value="Crowdfunding: Spieleschmiede"/>
+        <link type="boardgamefamily" id="77349" value="Digital Implementations: Steam"/>
+        <link type="boardgamefamily" id="70948" value="Digital Implementations: Tabletopia"/>
+        <link type="boardgamefamily" id="81575" value="Digital Implementations: VASSAL"/>
+        <link type="boardgamefamily" id="26397" value="Food & Drink: Beer"/>
+        <link type="boardgamefamily" id="57499" value="Game: Brass"/>
+        <link type="boardgamefamily" id="50152" value="History: Industrial Revolution"/>
+        <link type="boardgamefamily" id="59705" value="Misc: LongPack Games"/>
+        <link type="boardgamefamily" id="78198" value="Misc: Watch It Played How To Videos"/>
+        <link type="boardgamefamily" id="81586" value="Occupation: Engineer"/>
+        <link type="boardgamefamily" id="4705" value="Organizations: The Game Artisans of Canada"/>
+        <link type="boardgamefamily" id="66445" value="Theme: Canals"/>
+        <link type="boardgameaccessory" id="334571" value="Brass: Birmingham / Lancashire – reDrewno Insert"/>
+        <link type="boardgameaccessory" id="399634" value="Brass: Birmingham – BGExpansions Upgrade Kit"/>
+        <link type="boardgameaccessory" id="439465" value="Brass: Birmingham – Česká pravidla a nápovědy"/>
+        <link type="boardgameaccessory" id="309493" value="Brass: Birmingham – e-Raptor Insert"/>
+        <link type="boardgameaccessory" id="347407" value="Brass: Birmingham – Game Tamer Organizer"/>
+        <link type="boardgameaccessory" id="419962" value="Brass: Birmingham – Inserty Herman Insert"/>
+        <link type="boardgameaccessory" id="430615" value="Brass: Birmingham – Iron Clays Upgrade"/>
+        <link type="boardgameaccessory" id="339385" value="Brass: Birmingham – Laserox Organizer"/>
+        <link type="boardgameaccessory" id="420437" value="Brass: Birmingham – Playmat"/>
+        <link type="boardgameaccessory" id="373838" value="Brass: Birmingham – Spike Craft Insert"/>
+        <link type="boardgameaccessory" id="350761" value="Brass: Birmingham – The Dicetroyers Organizer"/>
+        <link type="boardgameaccessory" id="348604" value="Brass: Birmingham – The GiftForge Insert"/>
+        <link type="boardgameaccessory" id="432279" value="Brass: Birmingham – Tokens Garden Metal Coins"/>
+        <link type="boardgameaccessory" id="340345" value="Brass: Birmingham – TowerRex Organizer"/>
+        <link type="boardgameaccessory" id="428779" value="Brass: Birmingham – Upended Games Organizer"/>
+        <link type="boardgameaccessory" id="347851" value="Brass: Birmingham / Lancashire – Eurohell Design Insert"/>
+        <link type="boardgameaccessory" id="306354" value="Brass: Birmingham / Lancashire – Folded Space Insert"/>
+        <link type="boardgameaccessory" id="328775" value="Brass: Coin-Cases"/>
+        <link type="boardgameaccessory" id="349935" value="Brass: Eurohell Design 3D Locomotive & Barge Upgrade"/>
+        <link type="boardgameaccessory" id="268234" value="Brass: Meeple Realty Insert"/>
+        <link type="boardgameaccessory" id="233281" value="Iron Clays"/>
+        <link type="boardgameimplementation" id="28720" value="Brass: Lancashire" inbound="true"/>
+        <link type="boardgamedesigner" id="32887" value="Gavan Brown"/>
+        <link type="boardgamedesigner" id="32943" value="Matt Tolman"/>
+        <link type="boardgamedesigner" id="6" value="Martin Wallace"/>
+        <link type="boardgameartist" id="32887" value="Gavan Brown"/>
+        <link type="boardgameartist" id="70571" value="Lina Cossette"/>
+        <link type="boardgameartist" id="70568" value="David Forest"/>
+        <link type="boardgameartist" id="140907" value="Gui Landgraf"/>
+        <link type="boardgameartist" id="38179" value="Damien Mammoliti"/>
+        <link type="boardgameartist" id="32943" value="Matt Tolman"/>
+        <link type="boardgamepublisher" id="21765" value="Roxley"/>
+        <link type="boardgamepublisher" id="3475" value="Arclight Games"/>
+        <link type="boardgamepublisher" id="44580" value="Board Game Rookie"/>
+        <link type="boardgamepublisher" id="25074" value="BoardM Factory"/>
+        <link type="boardgamepublisher" id="21608" value="CMON Global Limited"/>
+        <link type="boardgamepublisher" id="11043" value="Conclave Editora"/>
+        <link type="boardgamepublisher" id="34522" value="CrowD Games"/>
+        <link type="boardgamepublisher" id="31071" value="Dexker Games"/>
+        <link type="boardgamepublisher" id="8832" value="Funforge"/>
+        <link type="boardgamepublisher" id="8820" value="Gém Klub Kft."/>
+        <link type="boardgamepublisher" id="4785" value="Ghenos Games"/>
+        <link type="boardgamepublisher" id="42147" value="Giant Roc"/>
+        <link type="boardgamepublisher" id="36210" value="Lanlalen"/>
+        <link type="boardgamepublisher" id="46500" value="Lord of Boards"/>
+        <link type="boardgamepublisher" id="30677" value="Maldito Games"/>
+        <link type="boardgamepublisher" id="36186" value="PHALANX"/>
+        <link type="boardgamepublisher" id="7466" value="Rebel Sp. z o.o."/>
+        <link type="boardgamepublisher" id="41423" value="TLAMA games"/>
+        <link type="boardgamepublisher" id="4932" value="White Goblin Games"/>
+        <link type="boardgamepublisher" id="54777" value="盒拍工作室 Hepa Studio"/>
+    </item>
+</items>

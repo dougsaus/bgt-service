@@ -1,6 +1,7 @@
 type Game {
     id: Int!
     name: String!
+    metadata: GameMetadata
 }
 
 input GameInput {
