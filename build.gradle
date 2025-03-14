@@ -35,7 +35,7 @@ dependencies {
 	implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.liquibase:liquibase-core'
-
+    implementation 'com.opencsv:opencsv:5.8'
 	runtimeOnly 'org.postgresql:postgresql'
 
 	compileOnly 'org.projectlombok:lombok'

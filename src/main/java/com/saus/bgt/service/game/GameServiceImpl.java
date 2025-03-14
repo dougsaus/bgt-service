@@ -25,9 +25,8 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game createGame(GameInput input) {
         return gameRepository.save(GameEntity.builder()
-                .id(UUID.randomUUID())
+                .id(input.getId())
                 .name(input.getName())
-                .bggLink(input.getBggLink() != null ? input.getBggLink() : "")
                 .build()).toGame();
     }
 }

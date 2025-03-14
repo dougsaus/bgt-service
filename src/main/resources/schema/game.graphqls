@@ -1,10 +1,9 @@
 type Game {
-    id: String!
+    id: Int!
     name: String!
-    bggLink: String
 }
 
 input GameInput {
+    id: Int!
     name: String!
-    bggLink: String = ""
 }

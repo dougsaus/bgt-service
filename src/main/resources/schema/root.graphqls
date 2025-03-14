@@ -3,5 +3,6 @@ type Query {
 }
 
 type Mutation {
+    seedGames(filename: String!): [Game!]!
     createGame(input: GameInput!): Game!
 }

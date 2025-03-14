@@ -18,7 +18,6 @@ import org.testcontainers.utility.DockerImageName;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
@@ -53,7 +52,6 @@ class GamesDataFetcherTest extends NameGeneratingTest {
                     games {
                         id
                         name
-                        bggLink
                     }
                 }
                 """;
@@ -72,7 +70,6 @@ class GamesDataFetcherTest extends NameGeneratingTest {
                     games {
                         id
                         name
-                        bggLink
                     }
                 }
                 """;
@@ -82,14 +79,12 @@ class GamesDataFetcherTest extends NameGeneratingTest {
 
         assertThat(games).isNotEmpty();
         Game game = games.getFirst();
-        assertThat(game.getId()).isEqualTo("a9c4955e-bf92-418f-b2bf-0421683f4001");
+        assertThat(game.getId()).isEqualTo(1);
         assertThat(game.getName()).isEqualTo("Game1");
-        assertThat(game.getBggLink()).isEqualTo("Link1");
 
         game = games.getLast();
-        assertThat(game.getId()).isEqualTo("a9c4955e-bf92-418f-b2bf-0421683f4002");
+        assertThat(game.getId()).isEqualTo(2);
         assertThat(game.getName()).isEqualTo("Game2");
-        assertThat(game.getBggLink()).isEqualTo("");
     }
 
     @Test
@@ -99,10 +94,9 @@ class GamesDataFetcherTest extends NameGeneratingTest {
 
         @Language("GraphQL") String query = """
                 mutation {
-                    createGame(input: {name: "New Game" bggLink: "New Link"}) {
+                    createGame(input: {id: 1 name: "New Game"}) {
                         id
                         name
-                        bggLink
                     }
                 }
                 """;
@@ -110,14 +104,57 @@ class GamesDataFetcherTest extends NameGeneratingTest {
         Game game = dgsQueryExecutor.executeAndExtractJsonPathAsObject(query, "data.createGame", new TypeRef<>() {
         });
 
-        assertThat(game.getId()).isNotNull();
+        assertThat(game.getId()).isEqualTo(1);
         assertThat(game.getName()).isEqualTo("New Game");
-        assertThat(game.getBggLink()).isEqualTo("New Link");
 
-        Optional<GameEntity> byId = gameRepository.findById(UUID.fromString(game.getId()));
+        Optional<GameEntity> byId = gameRepository.findById(game.getId());
         assertThat(byId.isPresent()).isTrue();
         GameEntity gameEntity = byId.get();
         assertThat(gameEntity.getName()).isEqualTo("New Game");
-        assertThat(gameEntity.getBggLink()).isEqualTo("New Link");
+    }
+
+    @Test
+    @Sql(scripts = "/scenarios/default/clear-db.sql", executionPhase = BEFORE_TEST_METHOD)
+    @Sql(scripts = "/scenarios/default/clear-db.sql", executionPhase = AFTER_TEST_METHOD)
+    void given_file_path__when_seed_games__then_persist_and_return_games() {
+
+        @Language("GraphQL") String query = """
+                mutation {
+                    seedGames(filename: "src/test/resources/scenarios/util/csv-read-all/games.csv") {
+                        id
+                        name
+                    }
+                }
+                """;
+
+        List<Game> games = dgsQueryExecutor.executeAndExtractJsonPathAsObject(query, "data.seedGames[*]", new TypeRef<>() {
+        });
+
+        assertThat(games).isNotEmpty();
+        Game game = games.getFirst();
+        assertThat(game.getId()).isEqualTo(1);
+        assertThat(game.getName()).isEqualTo("Too Many Bones");
+
+        game = games.get(1);
+        assertThat(game.getId()).isEqualTo(2);
+        assertThat(game.getName()).isEqualTo("Nemesis");
+
+        game = games.get(2);
+        assertThat(game.getId()).isEqualTo(3);
+        assertThat(game.getName()).isEqualTo("Terraforming Mars");
+
+        List<GameEntity> gameEntities = gameRepository.findAll();
+
+        GameEntity gameEntity = gameEntities.getFirst();
+        assertThat(gameEntity.getId()).isEqualTo(1);
+        assertThat(gameEntity.getName()).isEqualTo("Too Many Bones");
+
+        gameEntity = gameEntities.get(1);
+        assertThat(gameEntity.getId()).isEqualTo(2);
+        assertThat(gameEntity.getName()).isEqualTo("Nemesis");
+
+        gameEntity = gameEntities.get(2);
+        assertThat(gameEntity.getId()).isEqualTo(3);
+        assertThat(gameEntity.getName()).isEqualTo("Terraforming Mars");
     }
 }
