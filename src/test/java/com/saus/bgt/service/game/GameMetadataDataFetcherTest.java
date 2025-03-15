@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.HttpMethod;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -62,6 +64,11 @@ class GameMetadataDataFetcherTest extends NameGeneratingTest {
             postgresImage
     );
 
+    @DynamicPropertySource
+    static void registerPgProperties(DynamicPropertyRegistry registry) {
+        registry.add("bgt.bgg.base-url", () -> String.format("http://localhost:%d", mockServerPort));
+    }
+
     @Autowired
     DgsQueryExecutor dgsQueryExecutor;
 
@@ -92,11 +99,13 @@ class GameMetadataDataFetcherTest extends NameGeneratingTest {
 
         @Language("GraphQL") String query = """
                 query {
-                    games {
-                        id
-                        name
-                        metadata {
-                            description
+                    queryGames {
+                        games{
+                            id
+                            name
+                            metadata {
+                                description
+                            }
                         }
                     }
                 }

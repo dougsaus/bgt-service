@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.UUID;
+
 @Slf4j
 @Entity(name = "games")
 @Data
@@ -17,12 +19,14 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 public class GameEntity {
     @Id
-    private Integer id;
+    private UUID id;
+    private Integer bggId;
     private String name;
 
     public Game toGame() {
         return Game.newBuilder()
-                .id(this.id)
+                .id(this.id.toString())
+                .bggId(this.bggId)
                 .name(this.name)
                 .build();
     }

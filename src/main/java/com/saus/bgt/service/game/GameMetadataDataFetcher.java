@@ -17,6 +17,6 @@ public class GameMetadataDataFetcher {
     public GameMetadata metadata(DgsDataFetchingEnvironment dfe) {
         Game game = dfe.getSource();
         assert game != null;
-        return bggClient.lookupGame(game.getId());
+        return bggClient.lookupGame(game.getBggId());
     }
 }
