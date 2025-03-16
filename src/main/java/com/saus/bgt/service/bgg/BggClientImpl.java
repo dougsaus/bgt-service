@@ -7,9 +7,11 @@ import com.saus.bgt.service.config.BgtServiceConfiguration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,10 +20,10 @@ public class BggClientImpl implements BggClient {
     private final WebClient.Builder webClientBuilder;
     private final BgtServiceConfiguration config;
 
-    public Mono<BggGame> fetchItems(List<Integer> ids) {
+    public List<BggGame> fetchItems(Set<Integer> ids) {
         String url = String.format("%s/thing?id=%s", config.getBgg().getBaseUrl(), buildIdsParameterValue(ids));
 
-        return webClientBuilder
+        BggGames games = webClientBuilder
                 .baseUrl(url)
                 .build()
                 .get()
@@ -31,25 +33,37 @@ public class BggClientImpl implements BggClient {
                     try {
                         XmlMapper xmlMapper = new XmlMapper();
                         xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-                        xmlMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);                        BggGames bggGames = xmlMapper.readValue(sanitizeXml(response), BggGames.class);
-                        return bggGames.getGames().getFirst();
+                        xmlMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+                        return xmlMapper.readValue(sanitizeXml(response), BggGames.class);
                     } catch (Exception e) {
-                        return BggGame.builder().build();
+                        return BggGames.builder().build();
                     }
-                });
+                })
+                .block();
+        return games != null ? games.getGames() : List.of();
     }
 
     @Override
-    public GameMetadata lookupGame(Integer id) {
-        return fetchItems(List.of(id))
-                .map(bggGame -> GameMetadata.newBuilder()
-                        .description(bggGame.getDescription())
-                        .build())
-                .block();
+    public Map<Integer, GameMetadata> loadMetadata(Set<Integer> ids) {
+        Map<Integer, GameMetadata> fetchedMetadata = fetchItems(ids)
+                .stream()
+                .collect(Collectors.toMap(
+                        BggGame::getId,
+                        bggGame -> GameMetadata.newBuilder()
+                                .description(bggGame.getDescription())
+                                .build()
+                ));
+
+        ids.stream()
+                .filter(id -> !fetchedMetadata.containsKey(id))
+                .forEach(id -> fetchedMetadata.put(id, GameMetadata.newBuilder().build()));
+
+        return fetchedMetadata;
     }
 
-    private String buildIdsParameterValue(List<Integer> ids) {
+    private String buildIdsParameterValue(Set<Integer> ids) {
         return ids.stream()
+                .filter(Objects::nonNull)
                 .map(String::valueOf)
                 .collect(Collectors.joining(","));
     }

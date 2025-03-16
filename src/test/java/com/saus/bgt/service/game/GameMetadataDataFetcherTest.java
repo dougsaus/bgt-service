@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.matchers.Times;
+import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpStatusCode;
 import org.mockserver.verify.VerificationTimes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,22 +83,12 @@ class GameMetadataDataFetcherTest extends NameGeneratingTest {
         server.when(request()
                                 .withMethod(HttpMethod.GET.toString())
                                 .withPath("/thing")
-                                .withQueryStringParameter("id", "1"),
+                                .withQueryStringParameter("id", "1,2,4"),
                         Times.exactly(1))
                 .respond(response()
                         .withStatusCode(HttpStatusCode.OK_200.code())
                         .withHeader("Content-Type", "application/xml")
-                        .withBody(readFileFromTestResources("scenarios/game/query-with-description/bgg-games-response1.xml")));
-
-        server.when(request()
-                                .withMethod(HttpMethod.GET.toString())
-                                .withPath("/thing")
-                                .withQueryStringParameter("id", "2"),
-                        Times.exactly(1))
-                .respond(response()
-                        .withStatusCode(HttpStatusCode.OK_200.code())
-                        .withHeader("Content-Type", "application/xml")
-                        .withBody(readFileFromTestResources("scenarios/game/query-with-description/bgg-games-response2.xml")));
+                        .withBody(readFileFromTestResources("scenarios/game/query-with-description/bgg-games-response-all.xml")));
 
         @Language("GraphQL") String query = """
                 query {
@@ -134,22 +125,24 @@ class GameMetadataDataFetcherTest extends NameGeneratingTest {
         assertThat(game.getId()).isEqualTo("fa118ba3-00b4-4266-a17e-ed1c3aa4fa03");
         assertThat(game.getBggId()).isNull();
         assertThat(game.getName()).isEqualTo("Game3");
+        assertThat(game.getMetadata()).isNotNull();
         assertThat(game.getMetadata().getDescription()).isNull();
 
-        server.verify(
-                request()
-                        .withMethod(HttpMethod.GET.toString())
-                        .withPath("/thing")
-                        .withQueryStringParameter("id", "1"),
-                VerificationTimes.exactly(1)
-        );
+        game = games.get(3);
+        assertThat(game.getId()).isEqualTo("fa118ba3-00b4-4266-a17e-ed1c3aa4fa04");
+        assertThat(game.getBggId()).isEqualTo(4);
+        assertThat(game.getName()).isEqualTo("Game4");
+        assertThat(game.getMetadata().getDescription()).isEqualTo("Description 4");
 
         server.verify(
                 request()
                         .withMethod(HttpMethod.GET.toString())
                         .withPath("/thing")
-                        .withQueryStringParameter("id", "2"),
+                        .withQueryStringParameter("id", "1,2,4"),
                 VerificationTimes.exactly(1)
         );
+
+        HttpRequest[] httpRequests = server.retrieveRecordedRequests(null);
+        assertThat(httpRequests).hasSize(1);
     }
 }
