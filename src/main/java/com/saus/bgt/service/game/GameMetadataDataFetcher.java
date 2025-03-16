@@ -5,7 +5,7 @@ import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
 import com.saus.bgt.generated.types.Game;
 import com.saus.bgt.generated.types.GameMetadata;
-import com.saus.bgt.service.bggGame.BggClient;
+import com.saus.bgt.service.bgg.BggClient;
 import lombok.RequiredArgsConstructor;
 
 @DgsComponent
