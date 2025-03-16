@@ -7,7 +7,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 public interface BgtDataFetcher {
-
     String CURSOR_FIRST = "first";
     String CURSOR_AFTER = "after";
 

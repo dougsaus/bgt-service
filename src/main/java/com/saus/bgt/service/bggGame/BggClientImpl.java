@@ -16,9 +16,10 @@ import java.util.stream.Collectors;
 public class BggClientImpl implements BggClient {
     private final WebClient.Builder webClientBuilder;
     private final BgtServiceConfiguration config;
+    private final XmlMapper xmlMapper;
 
     public Mono<BggGame> fetchItems(List<Integer> ids) {
-        String url = String.format("%s/thing/id=%s", config.getBgg().getBaseUrl(), buildIdsParameterValue(ids));
+        String url = String.format("%s/thing?id=%s", config.getBgg().getBaseUrl(), buildIdsParameterValue(ids));
 
         return webClientBuilder
                 .baseUrl(url)
@@ -28,8 +29,7 @@ public class BggClientImpl implements BggClient {
                 .bodyToMono(String.class)
                 .map(response -> {
                     try {
-                        XmlMapper xmlMapper = new XmlMapper();
-                        BggGames bggGames = xmlMapper.readValue(response, BggGames.class);
+                        BggGames bggGames = xmlMapper.readValue(sanitizeXml(response), BggGames.class);
                         return bggGames.getGames().getFirst();
                     } catch (Exception e) {
                         return BggGame.builder().build();
@@ -50,5 +50,9 @@ public class BggClientImpl implements BggClient {
         return ids.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(","));
+    }
+
+    private String sanitizeXml(String xml) {
+        return xml.replaceAll("&(?!amp;|lt;|gt;|quot;|apos;)", "&amp;");
     }
 }

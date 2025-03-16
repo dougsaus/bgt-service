@@ -4,12 +4,15 @@ import com.jayway.jsonpath.TypeRef;
 import com.netflix.graphql.dgs.DgsQueryExecutor;
 import com.netflix.graphql.dgs.test.EnableDgsTest;
 import com.saus.bgt.generated.types.Game;
+import com.saus.bgt.generated.types.GameConnection;
 import com.saus.bgt.service.NameGeneratingTest;
+import graphql.ExecutionResult;
 import org.intellij.lang.annotations.Language;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -17,6 +20,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -184,6 +188,14 @@ class GamesDataFetcherTest extends NameGeneratingTest {
         @Language("GraphQL") String query = """
                 query {
                     queryGames(first: 3) {
+                        pageInfo {
+                            endCursor
+                            startCursor
+                            hasNextPage
+                            hasPreviousPage
+                        }
+                        totalCount
+                        count
                         games {
                             id
                             bggId
@@ -193,9 +205,10 @@ class GamesDataFetcherTest extends NameGeneratingTest {
                 }
                 """;
 
-        List<Game> games = dgsQueryExecutor.executeAndExtractJsonPathAsObject(query, "data.queryGames.games[*]", new TypeRef<>() {
+        GameConnection gameConnection = dgsQueryExecutor.executeAndExtractJsonPathAsObject(query, "data.queryGames", new TypeRef<>() {
         });
 
+        List<Game> games = gameConnection.getGames();
         assertThat(games.size()).isEqualTo(3);
 
         assertThat(games).isNotEmpty();
@@ -213,6 +226,56 @@ class GamesDataFetcherTest extends NameGeneratingTest {
         assertThat(game.getId()).isNotEmpty();
         assertThat(game.getBggId()).isEqualTo(3);
         assertThat(game.getName()).isEqualTo("Game3");
+
+        assertThat(gameConnection.getPageInfo().getHasNextPage()).isTrue();
+        assertThat(gameConnection.getPageInfo().getHasPreviousPage()).isFalse();
+        assertThat(gameConnection.getTotalCount()).isEqualTo(5);
+        assertThat(gameConnection.getCount()).isEqualTo(3);
+
+        @Language("GraphQL") String nextPageQuery = """
+                query ($AFTER: String!){
+                    queryGames(first: 3 after: $AFTER) {
+                        pageInfo {
+                            endCursor
+                            startCursor
+                            hasNextPage
+                            hasPreviousPage
+                        }
+                        totalCount
+                        count
+                        games {
+                            id
+                            bggId
+                            name
+                        }
+                    }
+                }
+                """;
+
+        gameConnection = dgsQueryExecutor.executeAndExtractJsonPathAsObject(nextPageQuery,
+                "data.queryGames",
+                Map.of("AFTER", gameConnection.getPageInfo().getEndCursor()),
+                new TypeRef<>() {
+        });
+
+        games = gameConnection.getGames();
+        assertThat(games.size()).isEqualTo(2);
+
+        assertThat(games).isNotEmpty();
+        game = games.getFirst();
+        assertThat(game.getId()).isNotEmpty();
+        assertThat(game.getBggId()).isEqualTo(4);
+        assertThat(game.getName()).isEqualTo("Game4");
+
+        game = games.get(1);
+        assertThat(game.getId()).isNotEmpty();
+        assertThat(game.getBggId()).isEqualTo(5);
+        assertThat(game.getName()).isEqualTo("Game5");
+
+        assertThat(gameConnection.getPageInfo().getHasNextPage()).isFalse();
+        assertThat(gameConnection.getPageInfo().getHasPreviousPage()).isTrue();
+        assertThat(gameConnection.getTotalCount()).isEqualTo(5);
+        assertThat(gameConnection.getCount()).isEqualTo(2);
 
     }
 }

@@ -32,7 +32,7 @@ public class GamesDataFetcher implements BgtDataFetcher {
         Page<Game> games = gameService.findGames(createPageRequest(dfe, pageNum));
         return GameConnection.newBuilder()
                 .pageInfo(createPageInfo(games, pageNum))
-                .count(games.getSize())
+                .count(games.getContent().size())
                 .totalCount((int) games.getTotalElements())
                 .edges(games
                         .stream()

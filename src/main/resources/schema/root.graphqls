@@ -1,5 +1,5 @@
 type Query {
-    queryGames(first: Int = 10): GameConnection!
+    queryGames(first: Int = 10 after: String): GameConnection!
 }
 
 type Mutation {

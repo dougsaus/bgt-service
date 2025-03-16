@@ -15,7 +15,7 @@ type Game implements Node{
     id: ID!
     bggId: Int
     name: String!
-    metadata: GameMetadata
+    metadata: GameMetadata!
 }
 
 input GameInput {
