@@ -10,7 +10,10 @@ Future versions will support tracking user collections and integrate with user e
 
 ## Running Tests
 
-The tests in this project use testcontainers so ensure you have a local docker daemon running and the tests should run out-of-the-box
+The tests in this project use testcontainers so ensure you have a local docker daemon running and the tests should run out-of-the-box.
+```bash
+./gradlew clean test
+```
 
 ## Running the Application Locally
 Running this application locally expects a postgres DB to be running on port 5432 with a DB named 'bgt'.  You can spin one up in docker as follows:
@@ -36,7 +39,7 @@ mutation seed {
 }
 ```
 
-## querying games
+## Querying Games
 
 You can query games with a query like this:
 ```graphql
@@ -67,3 +70,15 @@ query {
 }
 ```
 
+## Creating Games
+
+You can create games with the following mutation.  The id of the bgg game is optional, but required if you want to enrich metadata.
+```graphql
+mutation {
+    createGame(input: {bggId: 1234 name: "My new game"}) {
+        id
+        bggId
+        name
+    }
+}
+```
