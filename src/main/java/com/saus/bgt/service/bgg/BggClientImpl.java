@@ -1,5 +1,6 @@
-package com.saus.bgt.service.bggGame;
+package com.saus.bgt.service.bgg;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.saus.bgt.generated.types.GameMetadata;
 import com.saus.bgt.service.config.BgtServiceConfiguration;
@@ -16,7 +17,6 @@ import java.util.stream.Collectors;
 public class BggClientImpl implements BggClient {
     private final WebClient.Builder webClientBuilder;
     private final BgtServiceConfiguration config;
-    private final XmlMapper xmlMapper;
 
     public Mono<BggGame> fetchItems(List<Integer> ids) {
         String url = String.format("%s/thing?id=%s", config.getBgg().getBaseUrl(), buildIdsParameterValue(ids));
@@ -29,7 +29,9 @@ public class BggClientImpl implements BggClient {
                 .bodyToMono(String.class)
                 .map(response -> {
                     try {
-                        BggGames bggGames = xmlMapper.readValue(sanitizeXml(response), BggGames.class);
+                        XmlMapper xmlMapper = new XmlMapper();
+                        xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                        xmlMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);                        BggGames bggGames = xmlMapper.readValue(sanitizeXml(response), BggGames.class);
                         return bggGames.getGames().getFirst();
                     } catch (Exception e) {
                         return BggGame.builder().build();

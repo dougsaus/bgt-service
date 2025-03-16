@@ -1,4 +1,4 @@
-package com.saus.bgt.service.bggGame;
+package com.saus.bgt.service.bgg;
 
 import com.saus.bgt.generated.types.GameMetadata;
 

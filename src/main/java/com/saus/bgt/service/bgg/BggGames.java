@@ -1,4 +1,4 @@
-package com.saus.bgt.service.bggGame;
+package com.saus.bgt.service.bgg;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
