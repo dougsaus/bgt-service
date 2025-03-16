@@ -1,0 +1,155 @@
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item type="boardgame" id="2">
+        <thumbnail>https://cf.geekdo-images.com/SoU8p28Sk1s8MSvoM4N8pQ__thumb/img/4KuHNTWSMPf8vTNDKSRMMI3oOv8=/fit-in/200x150/filters:strip_icc()/pic6293412.jpg</thumbnail>
+        <image>https://cf.geekdo-images.com/SoU8p28Sk1s8MSvoM4N8pQ__original/img/g4S18szTdrXCdIwVKzMKrZrYAcM=/0x0/filters:format(jpeg)/pic6293412.jpg</image>
+        <name type="primary" sortindex="1" value="Ark Nova"/>
+        <name type="alternate" sortindex="1" value="Archa Nova"/>
+        <name type="alternate" sortindex="1" value="Arche Nova"/>
+        <name type="alternate" sortindex="1" value="Новий ковчег"/>
+        <name type="alternate" sortindex="1" value="นาวาสรรพสัตว์"/>
+        <name type="alternate" sortindex="1" value="アーク・ノヴァ 新たなる方舟"/>
+        <name type="alternate" sortindex="1" value="方舟动物园"/>
+        <name type="alternate" sortindex="1" value="方舟動物園"/>
+        <name type="alternate" sortindex="1" value="아크 노바"/>
+        <description>Description 2</description>
+        <yearpublished value="2021"/>
+        <minplayers value="1"/>
+        <maxplayers value="4"/>
+        <poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="2014">
+            <results numplayers="1">
+                <result value="Best" numvotes="198"/>
+                <result value="Recommended" numvotes="834"/>
+                <result value="Not Recommended" numvotes="254"/>
+            </results>
+            <results numplayers="2">
+                <result value="Best" numvotes="1289"/>
+                <result value="Recommended" numvotes="511"/>
+                <result value="Not Recommended" numvotes="38"/>
+            </results>
+            <results numplayers="3">
+                <result value="Best" numvotes="573"/>
+                <result value="Recommended" numvotes="913"/>
+                <result value="Not Recommended" numvotes="146"/>
+            </results>
+            <results numplayers="4">
+                <result value="Best" numvotes="96"/>
+                <result value="Recommended" numvotes="563"/>
+                <result value="Not Recommended" numvotes="886"/>
+            </results>
+            <results numplayers="4+">
+                <result value="Best" numvotes="2"/>
+                <result value="Recommended" numvotes="7"/>
+                <result value="Not Recommended" numvotes="1004"/>
+            </results>
+        </poll>
+        <poll-summary name="suggested_numplayers" title="User Suggested Number of Players">
+            <result name="bestwith" value="Best with 2 players"/>
+            <result name="recommmendedwith" value="Recommended with 1–3 players"/>
+        </poll-summary>
+        <playingtime value="150"/>
+        <minplaytime value="90"/>
+        <maxplaytime value="150"/>
+        <minage value="14"/>
+        <poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="279">
+            <results>
+                <result value="2" numvotes="0"/>
+                <result value="3" numvotes="0"/>
+                <result value="4" numvotes="0"/>
+                <result value="5" numvotes="0"/>
+                <result value="6" numvotes="2"/>
+                <result value="8" numvotes="8"/>
+                <result value="10" numvotes="35"/>
+                <result value="12" numvotes="95"/>
+                <result value="14" numvotes="119"/>
+                <result value="16" numvotes="17"/>
+                <result value="18" numvotes="3"/>
+                <result value="21 and up" numvotes="0"/>
+            </results>
+        </poll>
+        <poll name="language_dependence" title="Language Dependence" totalvotes="73">
+            <results>
+                <result level="31" value="No necessary in-game text" numvotes="0"/>
+                <result level="32" value="Some necessary text - easily memorized or small crib sheet" numvotes="0"/>
+                <result level="33" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="25"/>
+                <result level="34" value="Extensive use of text - massive conversion needed to be playable" numvotes="44"/>
+                <result level="35" value="Unplayable in another language" numvotes="4"/>
+            </results>
+        </poll>
+        <link type="boardgamecategory" id="1089" value="Animals"/>
+        <link type="boardgamecategory" id="1021" value="Economic"/>
+        <link type="boardgamecategory" id="1084" value="Environmental"/>
+        <link type="boardgamemechanic" id="2689" value="Action Queue"/>
+        <link type="boardgamemechanic" id="2875" value="End Game Bonuses"/>
+        <link type="boardgamemechanic" id="2978" value="Grid Coverage"/>
+        <link type="boardgamemechanic" id="2040" value="Hand Management"/>
+        <link type="boardgamemechanic" id="2026" value="Hexagon Grid"/>
+        <link type="boardgamemechanic" id="2902" value="Income"/>
+        <link type="boardgamemechanic" id="2914" value="Increase Value of Unchosen Resources"/>
+        <link type="boardgamemechanic" id="2041" value="Open Drafting"/>
+        <link type="boardgamemechanic" id="2004" value="Set Collection"/>
+        <link type="boardgamemechanic" id="2819" value="Solo / Solitaire Game"/>
+        <link type="boardgamemechanic" id="3100" value="Tags"/>
+        <link type="boardgamemechanic" id="2002" value="Tile Placement"/>
+        <link type="boardgamemechanic" id="2015" value="Variable Player Powers"/>
+        <link type="boardgamemechanic" id="2897" value="Variable Set-up"/>
+        <link type="boardgamefamily" id="67874" value="Components: Hexagonal Tiles"/>
+        <link type="boardgamefamily" id="70360" value="Digital Implementations: Board Game Arena"/>
+        <link type="boardgamefamily" id="77349" value="Digital Implementations: Steam"/>
+        <link type="boardgamefamily" id="73596" value="Digital Implementations: TableTop Simulator Mod (TTS)"/>
+        <link type="boardgamefamily" id="76649" value="Game: Ark Nova"/>
+        <link type="boardgamefamily" id="27646" value="Mechanism: Tableau Building"/>
+        <link type="boardgamefamily" id="5666" value="Players: Games with Solitaire Rules"/>
+        <link type="boardgamefamily" id="68335" value="Theme: Ecology"/>
+        <link type="boardgamefamily" id="66167" value="Theme: Science"/>
+        <link type="boardgamefamily" id="76846" value="Theme: Zoos, Aquaria, Safari Parks"/>
+        <link type="boardgameexpansion" id="368966" value="Ark Nova: Marine Worlds"/>
+        <link type="boardgameexpansion" id="433207" value="Ark Nova: Promotion Team & Capybara Promo Cards"/>
+        <link type="boardgameexpansion" id="368158" value="Ark Nova: Zoo Map Pack 1"/>
+        <link type="boardgameexpansion" id="426978" value="Ark Nova: Zoo Map Pack 2"/>
+        <link type="boardgameaccessory" id="433128" value="Ark Nova + Marine Worlds: Eurohell Design Insert"/>
+        <link type="boardgameaccessory" id="366502" value="Ark Nova: BGExpansions Full Upgrade Kit"/>
+        <link type="boardgameaccessory" id="365692" value="Ark Nova: Board Game Amplifier Acrylic Overlay"/>
+        <link type="boardgameaccessory" id="413174" value="Ark Nova: e-Raptor Insert UV Print"/>
+        <link type="boardgameaccessory" id="375802" value="Ark Nova: Eurohell Design Coffee Mug"/>
+        <link type="boardgameaccessory" id="357875" value="Ark Nova: Eurohell Design Insert"/>
+        <link type="boardgameaccessory" id="366164" value="Ark Nova: Eurohell Design Upgrade Coins"/>
+        <link type="boardgameaccessory" id="375801" value="Ark Nova: Eurohell Design X-tokens"/>
+        <link type="boardgameaccessory" id="360411" value="Ark Nova: Folded Space Insert"/>
+        <link type="boardgameaccessory" id="419823" value="Ark Nova: LaserLand 112 Token Upgrades"/>
+        <link type="boardgameaccessory" id="419824" value="Ark Nova: LaserLand Marine Worlds Association Board Overlay"/>
+        <link type="boardgameaccessory" id="419822" value="Ark Nova: LaserLand Player Board Overlays"/>
+        <link type="boardgameaccessory" id="367202" value="Ark Nova: Laserox Organizer"/>
+        <link type="boardgameaccessory" id="426880" value="Ark Nova: Moedas & Co. Metal Coins"/>
+        <link type="boardgameaccessory" id="434368" value="Ark Nova: Polandgames Token Set"/>
+        <link type="boardgameaccessory" id="368014" value="Ark Nova: reDrewno Insert"/>
+        <link type="boardgameaccessory" id="382556" value="Ark Nova: Sloyca Insert"/>
+        <link type="boardgameaccessory" id="378754" value="Ark Nova: Spielmaterial.de Upgrade"/>
+        <link type="boardgameaccessory" id="367999" value="Ark Nova: The GiftForge Insert"/>
+        <link type="boardgameaccessory" id="367516" value="Ark Nova: Wooden tokens"/>
+        <link type="boardgamedesigner" id="138517" value="Mathias Wigge"/>
+        <link type="boardgameartist" id="138547" value="Steffen Bieker"/>
+        <link type="boardgameartist" id="11462" value="Loïc Billiau"/>
+        <link type="boardgameartist" id="12484" value="Dennis Lohausen"/>
+        <link type="boardgameartist" id="11797" value="Christof Tisch"/>
+        <link type="boardgamepublisher" id="22380" value="Feuerland Spiele"/>
+        <link type="boardgamepublisher" id="30958" value="Capstone Games"/>
+        <link type="boardgamepublisher" id="21608" value="CMON Global Limited"/>
+        <link type="boardgamepublisher" id="10768" value="Cranio Creations"/>
+        <link type="boardgamepublisher" id="12540" value="Game Harbor"/>
+        <link type="boardgamepublisher" id="8820" value="Gém Klub Kft."/>
+        <link type="boardgamepublisher" id="42325" value="Grok Games"/>
+        <link type="boardgamepublisher" id="17179" value="IGAMES"/>
+        <link type="boardgamepublisher" id="8291" value="Korea Boardgames"/>
+        <link type="boardgamepublisher" id="3218" value="Lautapelit.fi"/>
+        <link type="boardgamepublisher" id="29242" value="Ludofy Creative"/>
+        <link type="boardgamepublisher" id="30677" value="Maldito Games"/>
+        <link type="boardgamepublisher" id="7992" value="MINDOK"/>
+        <link type="boardgamepublisher" id="51614" value="MIPL"/>
+        <link type="boardgamepublisher" id="2726" value="Portal Games"/>
+        <link type="boardgamepublisher" id="44241" value="Regatul Jocurilor"/>
+        <link type="boardgamepublisher" id="29409" value="Super Meeple"/>
+        <link type="boardgamepublisher" id="22609" value="テンデイズゲームズ (TendaysGames)"/>
+        <link type="boardgamepublisher" id="39774" value="Tower Tactic Games"/>
+        <link type="boardgamepublisher" id="4932" value="White Goblin Games"/>
+    </item>
+</items>

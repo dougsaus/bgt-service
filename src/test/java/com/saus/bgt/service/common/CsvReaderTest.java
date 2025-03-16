@@ -1,7 +1,6 @@
-package com.saus.bgt.service.util;
+package com.saus.bgt.service.common;
 
 import com.saus.bgt.service.NameGeneratingTest;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
