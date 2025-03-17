@@ -1,3 +1,5 @@
+"""Metadata about a particular board game, enriched from BGG API"""
 type GameMetadata {
+    """Description of the game"""
     description: String
 }

@@ -1,14 +1,30 @@
 # bgt-service
 
-This project is a graphql service for tracking information about board games and user board game collections.
+This project is a graphql service for tracking information about board games and user board game collections. Currently only games are tracked and just a minimal set of fields to demonstrate the the app capabilities. 
 
-This service will aggregate data for a board game stored locally by this service with enrichment from the Board Game Geek (BGG) REST api.  
+This service will aggregate data for a board game stored locally by this service with enrichment from the [Board Game Geek (BGG) REST api](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
 
-Future versions will support tracking user collections and integrate with user existing collections on BGG.
+## Architecture
+The application architecture is very simple.  The service starts with a Graphiql front end providing the graph client a user can submit queries and mutations to.  
+The user can use the `seed()` mutation to seed the database with sample data from a csv file.  
+When `metadata` is requested, a dataloader will aggregate that portion of the graph using data from the public Board Game Geek REST Api.
+The service uses `Postgres` as a data store.
+
+<img src="./bgt-architecture.jpg" alt="architecture" width="500"/>
+
+## Future Enhancements
+
+This app could be expanded in a number of ways
+- Add filtering and sorting to `queryGames()`
+- Track additional fields for games (type, genre, publish date, etc)
+  - Can add additional fields not available on BGG or just additional fields for indexing purposes
+  - Can enrich games with more fields form the BGG API
+- Add user collections
+  - Integrate user collections with Board Game Geek Collections
+- Break Games, GameMetadata, and Collections into separate DGS and federate with [Apollo](https://www.apollographql.com/docs/graphos/schema-design/federated-schemas/federation)
 
 
-
-## Running Tests
+# Running Tests
 
 The tests in this project use testcontainers so ensure you have a local docker daemon running and the tests should run out-of-the-box.
 ```bash

@@ -1,3 +1,4 @@
+"""Relay compatible schema"""
 interface Connection {
     edges: [Edge]
     pageInfo: PageInfo

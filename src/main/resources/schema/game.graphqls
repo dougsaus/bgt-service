@@ -1,3 +1,4 @@
+"""Relay compatible board games"""
 type GameConnection implements Connection {
     edges: [GameEdge]
     pageInfo: PageInfo
@@ -6,19 +7,28 @@ type GameConnection implements Connection {
     totalCount: Int
 }
 
+"""Relay compatible board game"""
 type GameEdge implements Edge {
     node: Game!
     cursor: String
 }
 
+"""Type representing a board game"""
 type Game implements Node{
+    """Auto generated node identifier for the board game"""
     id: ID!
+    """The id of the game in the board game geek system (Optional, but required to enrich metadata from BGG)"""
     bggId: Int
+    """The name of the board game"""
     name: String!
+    """metadata about the board game"""
     metadata: GameMetadata!
 }
 
+"""Type representing a new board game to be added"""
 input GameInput {
+    """The id of the game in the board game geek system (Optional, but required to enrich metadata from BGG)"""
     bggId: Int
+    """The name of the board game"""
     name: String!
 }

@@ -1,8 +1,11 @@
 type Query {
+    """Pageable query of all games stored in the Board Game Tracker service with a default sort on name ASC"""
     queryGames(first: Int = 10 after: String): GameConnection!
 }
 
 type Mutation {
+    """Seeds games from a sample CSV located at the filename path provided"""
     seedGames(filename: String!): [Game!]!
+    """Creates a new game in Board Game Tracker service"""
     createGame(input: GameInput!): Game!
 }
