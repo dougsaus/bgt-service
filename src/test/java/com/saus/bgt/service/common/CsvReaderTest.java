@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class CsvReaderTest extends NameGeneratingTest {
 
     @Test
-    void given_csv__when_readCsvFileAsMap__then_should_return_map_with_all_columns() {
+    void given_valid_csv__when_readCsvFileAsMap__then_should_return_map_with_all_columns() {
         String filePath = Paths.get("src/test/resources/scenarios/util/csv-read-all/games.csv").toString();
 
         List<Map<String, String>> records = CsvReader.readCsvFileAsMap(filePath);
@@ -47,7 +47,7 @@ class CsvReaderTest extends NameGeneratingTest {
 
     @Test
     void given_invalid_csv__when_readCsvFileAsMap__then_exception_thrown() {
-        String filePath = Paths.get("src/test/resources/scenarios/util/invalid/games.csv").toString();
+        String filePath = Paths.get("src/test/resources/scenarios/util/invalid/games-missing-header.csv").toString();
         Exception e = assertThrows(RuntimeException.class, () -> CsvReader.readCsvFileAsMap(filePath));
         assertThat(e).hasMessage("Unable to parse CSV file");
         assertThat(e).cause().isInstanceOf(IOException.class);

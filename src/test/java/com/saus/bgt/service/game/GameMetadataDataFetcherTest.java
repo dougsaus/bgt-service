@@ -8,6 +8,7 @@ import com.saus.bgt.service.NameGeneratingTest;
 import org.intellij.lang.annotations.Language;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.matchers.Times;
@@ -54,6 +55,11 @@ class GameMetadataDataFetcherTest extends NameGeneratingTest {
     public static void beforeAll() {
         mockServerPort = getAvailablePortForTest(GameMetadataDataFetcherTest.class.getSimpleName());
         server = startClientAndServer(mockServerPort);
+    }
+
+    @BeforeEach
+    void beforeEach() {
+        server.reset();
     }
 
     @AfterAll
@@ -144,5 +150,47 @@ class GameMetadataDataFetcherTest extends NameGeneratingTest {
 
         HttpRequest[] httpRequests = server.retrieveRecordedRequests(null);
         assertThat(httpRequests).hasSize(1);
+    }
+
+    @Test
+    @Sql(scripts = "/scenarios/game/query-with-bad-bgg-xml/given.sql", executionPhase = BEFORE_TEST_METHOD)
+    @Sql(scripts = "/scenarios/default/clear-db.sql", executionPhase = AFTER_TEST_METHOD)
+    void given_bgg_service_returns_bad_data__when_query_for_all_games__then_return_list_of_games_with_empty_metadata() {
+
+        server.when(request()
+                                .withMethod(HttpMethod.GET.toString())
+                                .withPath("/thing")
+                                .withQueryStringParameter("id", "1"),
+                        Times.exactly(1))
+                .respond(response()
+                        .withStatusCode(HttpStatusCode.OK_200.code())
+                        .withHeader("Content-Type", "application/xml")
+                        .withBody(readFileFromTestResources("scenarios/game/query-with-bad-bgg-xml/bgg-games-response-all.xml")));
+
+        @Language("GraphQL") String query = """
+                query {
+                    queryGames {
+                        games{
+                            id
+                            bggId
+                            name
+                            metadata {
+                                description
+                            }
+                        }
+                    }
+                }
+                """;
+
+        List<Game> games = dgsQueryExecutor.executeAndExtractJsonPathAsObject(query, "data.queryGames.games[*]", new TypeRef<>() {
+        });
+
+        assertThat(games).isNotEmpty();
+        Game game = games.getFirst();
+        assertThat(game.getId()).isEqualTo("fa118ba3-00b4-4266-a17e-ed1c3aa4fa01");
+        assertThat(game.getBggId()).isEqualTo(1);
+        assertThat(game.getName()).isEqualTo("Game1");
+        assertThat(game.getMetadata()).isNotNull();
+        assertThat(game.getMetadata().getDescription()).isNull();
     }
 }

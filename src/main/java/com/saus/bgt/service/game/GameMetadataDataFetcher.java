@@ -19,10 +19,7 @@ public class GameMetadataDataFetcher {
     @DgsData(parentType = "Game")
     public CompletableFuture<GameMetadata> metadata(DgsDataFetchingEnvironment dfe) {
         Game game = dfe.getSource();
-        assert game != null;
         DataLoader<Integer, GameMetadata> dataLoader = dfe.getDataLoader("metadata");
-
-        assert dataLoader != null;
         return dataLoader.load(game.getBggId());
     }
 }
