@@ -8,7 +8,7 @@ This service will aggregate data for a board game stored locally by this service
 
 ## Architecture
 The application architecture is very simple.  The service starts with a Graphiql front end providing the graph client a user can submit queries and mutations to.  
-The user can use the `seed()` mutation to seed the database with sample data from a csv file.  
+The user can use the `seedGames()` mutation to seed the database with sample data from a csv file.  
 When `metadata` is requested, a dataloader will aggregate that portion of the graph using data from the public Board Game Geek REST Api.
 The service uses `Postgres` as a data store.
 
