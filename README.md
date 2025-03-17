@@ -1,15 +1,20 @@
 # bgt-service
 
 This project is a graphql service for tracking information about board games and user board game collections. Currently only games are tracked and just a minimal set of fields to demonstrate DGS capabilities. 
-I created the project mostly just to get comfortable with a new personal laptop and its development environment. I also thought it would be nice to have a personal reference for a DGS that was not locked behind my current employer's IP.  
+
+I created the project mostly just to get comfortable with a new personal laptop and its development environment. I also thought it would be nice to have a personal reference for a DGS that was not locked behind my current employer's IP.
+
 This service could end up being the backing service for another (unfinished) project I was playing with to provide a Typescript/React UI for browsing board game collections.   
 
 This service will aggregate data for a board game stored locally by this service with enrichment from the [Board Game Geek (BGG) REST api](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
 
 ## Architecture
 The application architecture is very simple.  The service starts with a Graphiql front end providing the graph client a user can submit queries and mutations to.  
+
 The user can use the `seedGames()` mutation to seed the database with sample data from a csv file.  
+
 When `metadata` is requested, a dataloader will aggregate that portion of the graph using data from the public Board Game Geek REST Api.
+
 The service uses `Postgres` as a data store.
 
 <img src="./bgt-architecture.jpg" alt="architecture" width="500"/>
