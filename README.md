@@ -27,7 +27,6 @@ The app could be expanded in a number of ways by adding more user value
 The app could be improved in a few ways as well that don't directly add new end-user features
 - Break Games, GameMetadata, and Collections into separate DGS and federate with [Apollo](https://www.apollographql.com/docs/graphos/schema-design/federated-schemas/federation)
 - Add security and RBAC
-- Add multitenancy
 - Better resiliency with calling the BGG service.  
   - Better error handling
   - retries on failure 
