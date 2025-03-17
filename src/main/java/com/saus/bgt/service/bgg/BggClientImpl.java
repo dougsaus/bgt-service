@@ -22,7 +22,7 @@ public class BggClientImpl implements BggClient {
 
     public List<BggGame> fetchItems(Set<Integer> ids) {
         String url = String.format("%s/thing?id=%s", config.getBgg().getBaseUrl(), buildIdsParameterValue(ids));
-        
+
         BggGames games = webClientBuilder
                 .baseUrl(url)
                 .build()

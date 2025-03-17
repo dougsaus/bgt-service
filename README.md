@@ -14,15 +14,22 @@ The service uses `Postgres` as a data store.
 
 ## Future Enhancements
 
-This app could be expanded in a number of ways
+The app could be expanded in a number of ways by adding more user value
 - Add filtering and sorting to `queryGames()`
 - Track additional fields for games (type, genre, publish date, etc)
   - Can add additional fields not available on BGG or just additional fields for indexing purposes
   - Can enrich games with more fields form the BGG API
 - Add user collections
   - Integrate user collections with Board Game Geek Collections
-- Break Games, GameMetadata, and Collections into separate DGS and federate with [Apollo](https://www.apollographql.com/docs/graphos/schema-design/federated-schemas/federation)
 
+The app could be improved in a few ways as well that don't directly add new end-user features
+- Break Games, GameMetadata, and Collections into separate DGS and federate with [Apollo](https://www.apollographql.com/docs/graphos/schema-design/federated-schemas/federation)
+- Add security and RBAC
+- Add multitenancy
+- Better resiliency with calling the BGG service.  
+  - Better error handling
+  - retries on failure 
+  - circuit breaker
 
 # Running Tests
 
