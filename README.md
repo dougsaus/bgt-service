@@ -1,6 +1,8 @@
 # bgt-service
 
-This project is a graphql service for tracking information about board games and user board game collections. Currently only games are tracked and just a minimal set of fields to demonstrate the the app capabilities. 
+This project is a graphql service for tracking information about board games and user board game collections. Currently only games are tracked and just a minimal set of fields to demonstrate DGS capabilities. 
+I created the project mostly just to get comfortable with a new personal laptop and its development environment. I also thought it would be nice to have a personal reference for a DGS that was not locked behind my current employer's IP.  
+This service could end up being the backing service for another (unfinished) project I was playing with to provide a Typescript/React UI for browsing board game collections.   
 
 This service will aggregate data for a board game stored locally by this service with enrichment from the [Board Game Geek (BGG) REST api](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
 
