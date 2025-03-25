@@ -2,21 +2,16 @@ package com.saus.bgt.service.game;
 
 import com.jayway.jsonpath.TypeRef;
 import com.netflix.graphql.dgs.DgsQueryExecutor;
-import com.netflix.graphql.dgs.test.EnableDgsTest;
 import com.saus.bgt.generated.types.Game;
 import com.saus.bgt.generated.types.GameConnection;
-import com.saus.bgt.service.NameGeneratingTest;
-import graphql.ExecutionResult;
+import com.saus.bgt.service.GameTrackerIntegrationTest;
 import org.intellij.lang.annotations.Language;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.data.domain.Page;
 import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import java.util.List;
@@ -29,10 +24,8 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TES
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
 
 
-@Testcontainers
-@SpringBootTest
-@EnableDgsTest
-class GamesDataFetcherTest extends NameGeneratingTest {
+@GameTrackerIntegrationTest
+class GamesDataFetcherTest {
 
     private static final DockerImageName postgresImage = DockerImageName.parse("postgres:14.3")
             .asCompatibleSubstituteFor("postgres");
@@ -256,7 +249,7 @@ class GamesDataFetcherTest extends NameGeneratingTest {
                 "data.queryGames",
                 Map.of("AFTER", gameConnection.getPageInfo().getEndCursor()),
                 new TypeRef<>() {
-        });
+                });
 
         games = gameConnection.getGames();
         assertThat(games.size()).isEqualTo(2);

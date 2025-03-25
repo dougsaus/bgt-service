@@ -2,9 +2,8 @@ package com.saus.bgt.service.game;
 
 import com.jayway.jsonpath.TypeRef;
 import com.netflix.graphql.dgs.DgsQueryExecutor;
-import com.netflix.graphql.dgs.test.EnableDgsTest;
 import com.saus.bgt.generated.types.Game;
-import com.saus.bgt.service.NameGeneratingTest;
+import com.saus.bgt.service.GameTrackerIntegrationTest;
 import org.intellij.lang.annotations.Language;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,7 +15,6 @@ import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpStatusCode;
 import org.mockserver.verify.VerificationTimes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -24,7 +22,6 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import java.util.List;
@@ -39,10 +36,8 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TES
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
 
 
-@Testcontainers
-@SpringBootTest
-@EnableDgsTest
-class GameMetadataDataFetcherTest extends NameGeneratingTest {
+@GameTrackerIntegrationTest
+class GameMetadataDataFetcherTest  {
 
     private static final DockerImageName postgresImage = DockerImageName.parse("postgres:14.3")
             .asCompatibleSubstituteFor("postgres");
