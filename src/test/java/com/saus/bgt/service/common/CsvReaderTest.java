@@ -1,6 +1,6 @@
 package com.saus.bgt.service.common;
 
-import com.saus.bgt.service.NameGeneratingTest;
+import com.saus.bgt.service.GameTrackerNameGeneratingTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -11,7 +11,8 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class CsvReaderTest extends NameGeneratingTest {
+@GameTrackerNameGeneratingTest
+class CsvReaderTest {
 
     @Test
     void given_valid_csv__when_readCsvFileAsMap__then_should_return_map_with_all_columns() {
